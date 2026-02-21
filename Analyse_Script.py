@@ -1,38 +1,36 @@
 '''
-
-author: Kugathas Ganeshan
-date: 2026-02-20
-description: This script is used to analyze the data from the CSV file and visualize it using matplotlib.
-
+Author: Kugathas Ganeshan
+Date: 2026-02-20
+Description: This script analyzes electricity access data from a CSV file and creates visualizations using matplotlib.
 '''
 
-#import necessary libraries
+# Import necessary libraries:
 
-import numpy as np
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
-#Load the data from the CSV file
+# Load the data from the CSV file:
 data = pd.read_csv('/home/kugathas/Desktop/Python/Data_Lab_assignment1/data.csv')
 
-#display the first few rows of the data
-# print(data.head())  
+# Display the first few rows of the data:
+print(data.head())  
 
-#display the summary statistics of the data
-# print(data.describe())
+# Display the summary statistics of the data:
+print(data.describe())
 
-#create dataframe for the analysis
+# Create dataframe for the analysis:
 df = pd.DataFrame(data)
 
-#display the information about the dataframe
+# Display the information about the dataframe:
 df.info()
-# print(df.info())
+print(df.info())
 
-#Add a new column for no of countries in the data
+# Add a new column for no of countries in the data:
 df.insert(1, 'No of Countries', range(1, len(df) + 1))
 
-#Display the updated dataframe
-# print(df.head())
+# Display the updated dataframe:
+print(df.head())
 
 '''
 Visualize the data using matplotlib.
@@ -42,31 +40,38 @@ Visualize the data using matplotlib.
 3.Task: Create a pie chart to show the distribution of electricity access in 2020 for all countries.
 
 '''
-#Task 1: Create a line plot to single country.(e.g. Sri Lanka)
+# Task 1: Create a line plot to single country.(e.g. Sri Lanka):
 
 country_name = 'Sri Lanka' ##you can change the country
 selected_country = df[df['Country Name'] == country_name]
 
-# Select the years for the x axis and the corresponding values for the y axis
+# Select the years for the x axis and the corresponding values for the y axis:
 years = [str(year) for year in range(2000, 2021)]##year need to converted into string because the column names are in string format
 sin_values = selected_country[years].values.flatten()
 
-#building the line chart
-plt.figure(figsize=(15, 6))
+# Building the line chart:
+plt.figure(figsize=(6, 4))
 plt.plot(years, sin_values, marker='o', linestyle='-', color='b')
 plt.title(f'Electricity Access in {country_name} (2000-2020)')
 plt.xlabel('Year')
 plt.ylabel('Electricity Access (%)')
 plt.grid(True)
-plt.xticks(rotation=45) ##rotate the x-axis labels
+plt.xticks(rotation= 45) ##rotate the x-axis labels
 plt.legend([country_name])
 plt.tight_layout() ##adjust the layout to prevent overlap
 plt.show()
 
+# Bulding the bar chart for single country:
+plt.figure(figsize=(6,4))
+plt.bar(years, sin_values) 
+plt.xlabel('Year')
+plt.ylabel('Electricity Access (%)')
+plt.xticks(rotation= 45)
+plt.legend([country_name])
+plt.show()
 
-#Task 2: Create a line plot to multiple countries.(e.g. Sri Lanka, India, Bangladesh)
+# Task 2: Create a line plot to multiple countries.(e.g. Sri Lanka, India, Bangladesh):
 
-# selected_multi_country = df[df['Country Name'].isin(['India', 'Zimbabwe'])]
 
 plt.figure(figsize=(12, 6))
 
@@ -80,9 +85,9 @@ plt.xticks(rotation=45) ##rotate the x-axis labels
 plt.legend()
 plt.show()
 
-#task 3: Create a pie chart to show the distribution of electricity access in 2020 for all countries
+# Task 3: Create a pie chart to show the distribution of electricity access in 2020 for all countries:
 
-# Select the data for the year 2020
+# Select the data for the year 2020:
 data_2020 = df['2020'].dropna() ##drop the missing values
 
 slices = [
@@ -95,7 +100,7 @@ slices = [
 labels = ['100% Access', 'High (90-99%)', 'Medium (50-89%)', 'Low (<50%)']
 colors = ['#003f5c', '#7a5195', '#ef5675', '#ffa600']
 
-#create the pie chart
+# Create the pie chart:
 plt.figure()
 plt.pie(
     slices,
@@ -107,7 +112,12 @@ plt.pie(
     shadow = True ##add 3d look
 )
 
-#add the title
+# Add the title:
 plt.title('Global Electricity Access Distribution (2020)')
 plt.axis('equal') ##this feature make the pie chart circle, not an oval shape
 plt.show()
+
+'''
+This is End here
+
+'''
