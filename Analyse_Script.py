@@ -67,6 +67,7 @@ plt.bar(years, sin_values)
 plt.xlabel('Year')
 plt.ylabel('Electricity Access (%)')
 plt.xticks(rotation= 45)
+plt.title(f'Electricity Access in {country_name} (2000-2020)')
 plt.legend([country_name])
 plt.show()
 
@@ -81,6 +82,7 @@ for select_multi_country in ['India', 'Zimbabwe', 'Bangladesh', 'Sri Lanka']: ##
 plt.xlabel('Year')
 plt.ylabel('Electricity Access (%)')
 plt.grid(True)
+plt.title('Electricity Access comparison')
 plt.xticks(rotation=45) ##rotate the x-axis labels    
 plt.legend()
 plt.show()
