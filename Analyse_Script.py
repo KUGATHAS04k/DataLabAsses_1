@@ -120,6 +120,6 @@ plt.axis('equal') ##this feature make the pie chart circle, not an oval shape
 plt.show()
 
 '''
-This is End here
+This is End here.
 
 '''
